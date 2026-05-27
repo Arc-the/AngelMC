@@ -10,11 +10,17 @@ The app should feel like a hands-free operations copilot for venue engineers, no
 
 ## Target Hackathon Track
 
-Prioritize **Best Project with ElevenLabs**.
+Prioritize **Best Project Using Voice AI**.
 
-ElevenLabs must be visibly and audibly used in the demo for assistant voice replies.
+Track rule: **No typing allowed during build or demo.**
 
-Wispr Flow should be used for voice-to-text if API access is available. If API access is not available, use Wispr Flow desktop dictation into the text fallback field, and keep browser speech recognition as a fallback.
+Build and demo the product as a voice-first system:
+
+- Use Wispr Flow for voice-to-text.
+- Use a mission-control agent/model for reasoning and decision-making.
+- Use ElevenLabs for voice replies.
+- Keep text input only as a hidden/debug fallback for local troubleshooting. Do not use it in the submitted demo video.
+- Quick actions are allowed only if they can be triggered by voice commands or hidden behind a debug mode that is not part of the judged demo.
 
 ## Core Voice Loop
 
@@ -48,7 +54,8 @@ Important:
 
 - Do not put Wispr Flow, ElevenLabs, or model API keys in frontend code.
 - The backend owns all secrets.
-- The frontend should be able to demo with text input if microphone or STT fails.
+- The judged demo must work without typing.
+- The frontend may include text fallback for development, but it must not be the primary user flow.
 - The assistant response should always be safe, concise, and operational.
 
 ## Demo Scenario
@@ -160,18 +167,18 @@ Simulation behavior:
 Required controls:
 
 - Large `Start Voice Input` button
-- Text input fallback
 - Transcript display
 - Assistant response card
 - Voice reply toggle
 - `Ask Assistant` button
+- Hidden/debug text fallback
 
 Voice input behavior:
 
 - Preferred path: record microphone audio and send it to backend `/api/stt`.
 - If Wispr Flow API access is available, backend uses Wispr Flow for transcription.
-- If Wispr Flow API access is unavailable, support text input and optional browser `SpeechRecognition`.
-- If the operator uses Wispr Flow desktop app, the text input should work naturally as the dictation target.
+- If Wispr Flow API access is unavailable, use Wispr Flow desktop dictation or browser `SpeechRecognition`.
+- The submitted demo should not rely on typed input.
 
 Voice output behavior:
 
@@ -179,16 +186,16 @@ Voice output behavior:
 - Backend calls ElevenLabs and returns playable audio.
 - If ElevenLabs is unavailable, fallback to browser `speechSynthesis`.
 
-### Quick Actions
+### Voice Demo Commands
 
-Add buttons:
+Support these demo phrases by voice:
 
-- `Ask: Where is the breaker for Projector B?`
-- `Ask: What should I check for the AV failure?`
-- `Ask: Where is Network Rack NR-1?`
-- `Ask: Smoke alarm near Gate 3, what should I do?`
+- `Where is the breaker for Projector B?`
+- `What should I check for the AV failure?`
+- `Where is Network Rack NR-1?`
+- `Smoke alarm near Gate 3, what should I do?`
 
-Each quick action should run the same backend agent path as a voice transcript.
+Optional debug quick-action buttons may exist only behind a visible `Debug Mode` toggle. Do not use them in the judged demo.
 
 ### Incident Report
 
@@ -289,7 +296,8 @@ Preferred behavior:
 
 Fallback behavior:
 
-- If Wispr Flow API access is not configured, return a provider-unavailable response so the frontend can use text input or browser speech recognition.
+- If Wispr Flow API access is not configured, return a provider-unavailable response so the frontend can use browser speech recognition or Wispr Flow desktop dictation.
+- The judged demo should still avoid manual typing.
 
 ### `POST /api/agent/ask`
 
@@ -614,7 +622,8 @@ README.md
 - Frontend and backend run locally.
 - Session start loads files from `server/context/`.
 - User can ask via voice when Wispr Flow API access is configured.
-- User can ask via text fallback even without STT.
+- Demo flow works without typing.
+- Hidden/debug text fallback exists only for development recovery.
 - Agent/model returns structured mission-control responses.
 - ElevenLabs voice reply works when configured.
 - Browser speech synthesis fallback works when ElevenLabs is unavailable.
