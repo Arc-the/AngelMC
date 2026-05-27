@@ -55,7 +55,7 @@ export function VoiceAssistant({
         {isListening ? "Stop and Transcribe" : "Start Voice Input"}
       </button>
       <p className="mb-3 text-xs text-slate-400">
-        {providers.wisprFlowConfigured
+        {providers.elevenLabsSpeechToTextConfigured
           ? "Records browser microphone audio and sends it to ElevenLabs speech-to-text."
           : "ElevenLabs speech-to-text is not configured. Focus the transcript capture field and use manual dictation."}
       </p>
@@ -83,10 +83,10 @@ export function VoiceAssistant({
         ref={transcriptRef}
         value={transcript}
         onChange={(event) => setTranscript(event.target.value)}
-        readOnly={!debugMode && providers.wisprFlowConfigured}
+        readOnly={!debugMode && providers.elevenLabsSpeechToTextConfigured}
         placeholder="Dictated transcript appears here."
         className={`mb-3 min-h-24 w-full resize-none rounded-md border border-ops-line bg-ops-panel2 p-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-ops-cyan ${
-          debugMode || !providers.wisprFlowConfigured ? "block" : "sr-only"
+          debugMode || !providers.elevenLabsSpeechToTextConfigured ? "block" : "sr-only"
         }`}
       />
       <div className="mb-4 flex items-center justify-between gap-2">

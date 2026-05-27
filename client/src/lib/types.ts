@@ -28,7 +28,7 @@ export type SessionStartResponse = {
 };
 
 export type ProviderStatus = {
-  wisprFlowConfigured: boolean;
-  elevenLabsConfigured: boolean;
+  elevenLabsSpeechToTextConfigured: boolean;
+  elevenLabsTextToSpeechConfigured: boolean;
   modelConfigured: boolean;
 };

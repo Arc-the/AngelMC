@@ -24,8 +24,8 @@ app.get("/api/health", (_req, res) => {
   res.json({
     ok: true,
     providers: {
-      wisprFlowConfigured: isElevenLabsSpeechToTextConfigured(),
-      elevenLabsConfigured: isElevenLabsConfigured(),
+      elevenLabsSpeechToTextConfigured: isElevenLabsSpeechToTextConfigured(),
+      elevenLabsTextToSpeechConfigured: isElevenLabsConfigured(),
       modelConfigured: Boolean(process.env.MODEL_API_KEY && process.env.MODEL_NAME)
     }
   });

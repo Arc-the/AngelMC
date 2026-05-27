@@ -251,8 +251,8 @@ Return backend status and provider configuration.
 {
   "ok": true,
   "providers": {
-    "wisprFlowConfigured": true,
-    "elevenLabsConfigured": true,
+    "elevenLabsSpeechToTextConfigured": true,
+    "elevenLabsTextToSpeechConfigured": true,
     "modelConfigured": true
   }
 }

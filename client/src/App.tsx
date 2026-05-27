@@ -10,8 +10,8 @@ import { api } from "./lib/api";
 import type { AgentResponse, IncidentLog, ProviderStatus, SimulatedScenario } from "./lib/types";
 
 const emptyProviders: ProviderStatus = {
-  wisprFlowConfigured: false,
-  elevenLabsConfigured: false,
+  elevenLabsSpeechToTextConfigured: false,
+  elevenLabsTextToSpeechConfigured: false,
   modelConfigured: false
 };
 

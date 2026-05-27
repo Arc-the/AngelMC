@@ -6,12 +6,12 @@ type TopBarProps = {
 };
 
 export function TopBar({ providers }: TopBarProps) {
-  const voiceReady = providers.wisprFlowConfigured && providers.elevenLabsConfigured;
-  const partialReady = providers.wisprFlowConfigured || providers.elevenLabsConfigured;
+  const voiceReady = providers.elevenLabsSpeechToTextConfigured && providers.elevenLabsTextToSpeechConfigured;
+  const partialReady = providers.elevenLabsSpeechToTextConfigured || providers.elevenLabsTextToSpeechConfigured;
   const providerLabel = voiceReady
     ? "ElevenLabs STT + TTS ready"
     : partialReady
-      ? `${providers.wisprFlowConfigured ? "ElevenLabs STT" : "ElevenLabs TTS"} ready`
+      ? `${providers.elevenLabsSpeechToTextConfigured ? "ElevenLabs STT" : "ElevenLabs TTS"} ready`
       : "Fallback voice mode";
 
   return (

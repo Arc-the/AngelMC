@@ -55,8 +55,6 @@ export async function transcribeWithElevenLabs(audio: Buffer): Promise<ElevenLab
 
   const formData = new FormData();
   formData.append("model_id", process.env.ELEVENLABS_STT_MODEL_ID || "scribe_v2");
-  formData.append("language_code", "en");
-  formData.append("file_format", "pcm_s16le_16");
   const wavBytes = audio.buffer.slice(audio.byteOffset, audio.byteOffset + audio.byteLength) as ArrayBuffer;
   formData.append("file", new Blob([wavBytes], { type: "audio/wav" }), "audio.wav");
 
